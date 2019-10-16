@@ -1,0 +1,17 @@
+.header {
+  &-logo {
+    @include blue-logo;
+    padding: 7px 14px;
+  }
+}
+
+.auth {
+  &-form {
+    &__logo {
+      margin-bottom: 50px;
+      font-size: 36px;
+      color: $_color-blue;
+      font-weight: 600;
+    }
+  }
+}

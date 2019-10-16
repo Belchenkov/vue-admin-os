@@ -1,0 +1,13 @@
+.app-pagination {
+
+  .v-pagination__item,
+  .v-pagination__navigation {
+    box-shadow: none !important;
+  }
+
+  .v-pagination__item:focus,
+  .v-pagination__navigation:focus {
+    outline: none;
+  }
+
+}

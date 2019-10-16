@@ -1,0 +1,14 @@
+.v-toolbar {
+  border-bottom: 1px solid #EBEFF2 !important;
+}
+
+.app-header {
+  &__profile {
+    flex: none;
+    justify-content: flex-end;
+
+    .v-list-item__content {
+      flex: 0 50%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+// https://vuetifyjs.com/ru/customization/sass-variables
+@import '~vuetify/src/styles/styles';
+
+//utils
+@import 'utils/variables';
+@import 'utils/mixin';
+@import 'components/application';
+@import 'components/sidebar';
+@import 'components/appbar';
+@import 'components/datatable';
+@import 'components/buttons';
+@import 'components/pagination';
+@import 'components/logo';
+

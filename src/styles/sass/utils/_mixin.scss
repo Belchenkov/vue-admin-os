@@ -1,0 +1,33 @@
+//logo
+@mixin blue-logo {
+  font-size: 25px;
+  color: $_color-blue;
+}
+
+//button
+@mixin basic-btn {
+  width: 160px;
+  height: 45px !important;
+}
+
+//main
+@mixin main-style {
+  font-size: 24px;
+  color: $_dark-blue;
+}
+
+@mixin small-style {
+  font-size: 13px;
+  color: $_color-blue;
+}
+
+@mixin small-styleBold {
+  color: $_dark-blue;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+@mixin small-styleLight {
+  color: $_dark-blue;
+  font-size: 16px;
+}

@@ -1,0 +1,10 @@
+.v-btn {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.bth-shadow {
+  &.primary:hover {
+    box-shadow: 0px 6px 14px -8px #109cf1 !important;
+  }
+}

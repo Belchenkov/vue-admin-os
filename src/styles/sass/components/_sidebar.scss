@@ -1,0 +1,45 @@
+.side-bar {
+
+  &.v-navigation-drawer--mini-variant {
+    .side-bar__item {
+      margin-left: 8px !important;
+    }
+
+    .header-logo {
+      padding-left: 15px !important;
+    }
+  }
+
+  &.v-navigation-drawer {
+    box-shadow: 0px 0px 25px 0px #00000024 !important;
+  }
+
+  .v-navigation-drawer__border {
+    background-color: #FFFFFF !important;
+  }
+
+  &__item {
+    padding-left: 24px !important;
+
+    .v-list-item__icon {
+      margin-right: 15px !important;
+    }
+
+    .v-list-item__icon {
+      svg {
+        stroke-width: 1.6;
+        stroke: #C2CFE0;
+        color: #FFF;
+      }
+    }
+
+    &.v-list-item--active {
+      .v-list-item__icon {
+        svg {
+          stroke: $_color-blue !important;
+          fill: #FFF !important;
+        }
+      }
+    }
+  }
+}

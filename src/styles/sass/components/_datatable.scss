@@ -1,0 +1,13 @@
+.v-data-table__checkbox {
+  & .v-icon {
+    color: #D5D5D5 !important;
+  }
+
+  & .mdi-checkbox-marked {
+    color: $_color-blue !important;
+  }
+}
+
+.datatable__publish-time {
+  font-size: 12px;
+}

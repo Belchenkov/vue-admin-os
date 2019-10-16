@@ -1,0 +1,73 @@
+{
+  "name": "lk_mc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:base": "NODE_ENV=test mocha --recursive --timeout 10000  spec ./tests/integration/test-*.js",
+    "test:unit": "vue-cli-service test:unit",
+    "deploy": "vue-cli-service build && scp -r dist/* yks@192.168.1.186:/var/www/lkuk/"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^12.4.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.0",
+    "axios": "^0.19.0",
+    "chromedriver": "^76.0.0",
+    "js-cookie": "^2.2.1",
+    "material-design-icons-iconfont": "^5.0.1",
+    "register-service-worker": "^1.6.2",
+    "selenium-webdriver": "^4.0.0-alpha.4",
+    "vue": "^2.6.10",
+    "vue-apexcharts": "^1.4.0",
+    "vue-router": "^3.0.3",
+    "vuetify": "^2.0.0",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@mdi/font": "^4.1.95",
+    "@mdi/js": "^4.1.95",
+    "@vue/cli-plugin-eslint": "^3.10.0",
+    "@vue/cli-plugin-pwa": "^3.10.0",
+    "@vue/cli-plugin-unit-mocha": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-eslint": "^10.0.2",
+    "chai": "^4.1.2",
+    "css-loader": "^3.2.0",
+    "deepmerge": "^4.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "fibers": "^4.0.1",
+    "node-sass": "^4.9.0",
+    "sass": "^1.22.10",
+    "sass-loader": "^7.3.1",
+    "vue-cli-plugin-vuetify": "^0.6.3",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
