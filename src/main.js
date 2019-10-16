@@ -5,9 +5,9 @@ import router from './plugins/router/router'
 import Api from './plugins/api/api'
 import './registerServiceWorker'
 import vuetify from './plugins/vuetify'
-import CKEditor from '@ckeditor/ckeditor5-vue';
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
-import './styles/sass/main.scss'
+//import './styles/sass/main.scss'
 
 Vue.use(Api, store, router)
 Vue.config.productionTip = false
