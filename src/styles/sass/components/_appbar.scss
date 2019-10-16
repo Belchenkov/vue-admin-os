@@ -2,6 +2,10 @@
   border-bottom: 1px solid #EBEFF2 !important;
 }
 
+.v-navigation-drawer--mini-variant .v-list-item {
+  min-height: 58px;
+}
+
 .app-header {
   &__profile {
     flex: none;
