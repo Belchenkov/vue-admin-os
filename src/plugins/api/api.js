@@ -10,7 +10,7 @@ import apiNews from "./methods/news";
 export default {
 
   envSetup() {
-    axios.defaults.baseURL = process.env.VUE_APP_API_ENTRYPOINT;
+    axios.defaults.baseURL = process.env.VUE_APP_API_ENTRYPOINT
   },
 
   interceptorsSetup(store, router, api) {
@@ -44,12 +44,12 @@ export default {
       store.commit('setInProgress', false)
 
       if (!error.response) {
-        console.log("%cError: internet connection", "color:red;")
+        window.console.log("Error: internet connection", "color:red;")
         return Promise.reject(null);
       }
 
       if (error.response.status == 401) {
-        console.log("%cError: unauthorized", "color:red;")
+        window.console.log("Error: unauthorized", "color:red;")
         if (store.state.isAuth) {
           api.app.$apiAuth.clearCookieAndExit()
           router.push({name: 'login'})
