@@ -1,10 +1,11 @@
 <template>
-    <v-navigation-drawer :mini-variant.sync="mini" permanent app elevation="5" class="side-bar">
+    <v-navigation-drawer :mini-variant="mini" app permanent elevation="5" class="side-bar">
         <v-list-item class="header-logo">
-            <v-list-item-title class="header-logo"><b>Admin</b> Panel</v-list-item-title>
+            <v-list-item-title v-if="!mini" class="header-logo"><b>Admin</b> Panel</v-list-item-title>
 
             <v-btn icon @click.stop="mini = !mini">
-                <v-icon>chevron_left</v-icon>
+                <v-icon v-if="!mini">chevron_left</v-icon>
+                <v-icon v-if="mini">chevron_right</v-icon>
             </v-btn>
         </v-list-item>
 
