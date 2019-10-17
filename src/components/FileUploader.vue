@@ -10,7 +10,7 @@
                 <li class="file-uploader-item" v-for="attach in attachments">
                     <div class="file-uploader-item-wrapper">
                         <button v-on:click="deleteFile(attach)" class="file-uploader-item-del">
-                            <v-icon small dark @click="deleteNews(item)">delete</v-icon>
+                            <v-icon small dark>delete</v-icon>
                         </button>
                         <a class="file-uploader-item-name" :href="attach.path" target="_blank">{{attach.name}}</a>
                         <img v-if="attach.type =='image/jpeg' || attach.type =='image/png' || attach.type =='image/svg'"
