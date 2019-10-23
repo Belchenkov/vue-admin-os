@@ -7,7 +7,7 @@
             <div class="justify-end">
                 <v-btn v-if="!this.id" class="bth-shadow" @click="createItem" depressed color="primary">Создать</v-btn>
                 <v-btn v-if="this.id" class="bth-shadow mr-2" @click="deleteItem" outlined depressed color="error">Удалить</v-btn>
-                <v-btn v-if="this.id" class="bth-shadow mr-2" @click="selectFiles" depressed color="primary">
+                <v-btn class="bth-shadow mx-2" @click="selectFiles" depressed color="primary">
                     Загрузить файл
                     <v-icon right dark>mdi-cloud-upload</v-icon>
                 </v-btn>
@@ -99,7 +99,12 @@
         let response = await this.$apiNews.getNews(this.id)
 
         if (response.result) {
-          this.item = response.data
+
+          if (response.data) {
+              this.item = response.data;
+              this.item.publish = +response.data.publish;
+          }
+
           this.$refs.fileUploader.setAttachments(this.item.images)
         } else {
           this.$root.$emit('showSnack', 'Ошибка загрузки новости', 'error')
