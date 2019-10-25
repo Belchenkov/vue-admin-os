@@ -22,5 +22,31 @@ export default function apiUsers(store, router, api) {
     async getUserVisits(id_phperson) {
       return await api.request.getRequest('users/catalog/' + id_phperson + '/visits')
     },
+
+    async getUserApprovalTasks(id_phperson) {
+      return await api.request.getRequest('users/catalog/' + id_phperson + '/approval')
+    },
+
+    async getUserSessions(id_phperson) {
+      return await api.request.getRequest('sessions/' + id_phperson)
+    },
+
+    async deleteUserSession(id_phperson, session_id) {
+      return await api.request.postRequest('sessions/' + id_phperson, {
+        session_id: session_id
+      })
+    },
+
+    async clearUserSessions(id_phperson) {
+      return await api.request.postRequest('sessions/' + id_phperson, {
+        all: 1
+      })
+    },
+
+    async clearUserOtherSessions(id_phperson) {
+      return await api.request.postRequest('sessions/' + id_phperson, {
+        others: 1
+      })
+    },
   }
 }

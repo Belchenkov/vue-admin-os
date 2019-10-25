@@ -9,5 +9,6 @@ export default function apiProfile(store, router, api) {
 
       return profile
     },
+
   }
 }
