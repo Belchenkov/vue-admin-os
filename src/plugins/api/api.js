@@ -6,6 +6,7 @@ import apiAuth from './methods/auth'
 import apiProfile from './methods/profile'
 import apiUsers from "./methods/users";
 import apiNews from "./methods/news";
+import apiMailing from "./methods/mailing";
 
 export default {
 
@@ -72,5 +73,6 @@ export default {
     Vue.prototype.$apiProfile = apiProfile(store, router, this)
     Vue.prototype.$apiUsers = apiUsers(store, router, this)
     Vue.prototype.$apiNews = apiNews(store, router, this)
+    Vue.prototype.$apiMailing = apiMailing(store, router, this)
   }
 }

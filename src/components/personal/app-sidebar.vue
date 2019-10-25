@@ -48,6 +48,15 @@
                     <v-list-item-title>Новости</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <v-list-item link :to="{name: 'mailing'}" class="side-bar__item">
+                <v-list-item-icon>
+                    <v-icon>mdi-comment-outline</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>Рассылки</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
 
             <v-list-item link class="side-bar__item" v-on:click="signOut">
                 <v-list-item-icon>

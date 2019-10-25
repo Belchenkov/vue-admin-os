@@ -115,6 +115,28 @@ const router = new Router({
               props: true
             },
           ]
+        },
+        {
+          path: 'mailing',
+          component: function () {
+            return import('@/views/personal/Router')
+          },
+          children: [
+            {
+              name: 'mailing',
+              path: '',
+              component: function () {
+                return import('@/views/personal/mailing/List')
+              },
+            },
+            {
+              name: 'mailing.create',
+              path: 'create',
+              component: function () {
+                return import('@/views/personal/mailing/Item')
+              },
+            },
+          ]
         }
       ]
     },
