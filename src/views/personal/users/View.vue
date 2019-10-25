@@ -1,225 +1,123 @@
 <template>
     <v-container class="lighten-5">
         <div v-if="item != null" class="d-flex">
-            <v-list-item>
-                <v-list-item-avatar size="100" :color="item.avatar.background">
-                    <v-img v-if="item.avatar.image" :src="item.avatar.image"></v-img>
-                    <span v-if="!item.avatar.image" :style="'font-size: 45px; color:' + item.avatar.color">{{item.avatar.name}}</span>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title style="font-size: 25px">{{item.name.full_name}}</v-list-item-title>
-                    <v-list-item-subtitle>{{item.unit}}: {{item.position}}</v-list-item-subtitle>
-                </v-list-item-content>
-            </v-list-item>
+            <div class="justify-start col-8">
+                <v-list-item>
+                    <v-list-item-avatar size="100" :color="item.avatar.background">
+                        <v-img v-if="item.avatar.image" :src="item.avatar.image"></v-img>
+                        <span v-if="!item.avatar.image" :style="'font-size: 45px; color:' + item.avatar.color">{{item.avatar.name}}</span>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                        <v-list-item-title style="font-size: 25px">{{item.name.full_name}}</v-list-item-title>
+                        <v-list-item-subtitle>{{item.unit}}: {{item.position}}</v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+            </div>
+            <div class="justify-end col-4 row wrap align-center">
+                <v-btn class="bth-shadow" @click="updateProfile" depressed outlined color="primary">
+                    Обновить
+                    <v-icon right dark>mdi-autorenew</v-icon>
+                </v-btn>
+            </div>
         </div>
 
-        <v-row>
-            <v-col v-if="item != null" class="col-7" no-gutters>
-                <div class="d-flex">
-                    <h2 class="flex justify-start">Информация</h2>
-                </div>
-                <v-card class="mt-5">
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color="indigo"></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.organisation}}</v-list-item-title>
-                            <v-list-item-subtitle>Организация</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
+        <v-tabs
+            v-model="tab"
+            background-color="transparent">
+            <v-tab>Информация о пользователе</v-tab>
+            <v-tab>Статистика посещений</v-tab>
+            <v-tab>Кабинет согласований</v-tab>
+            <v-tab>Сессии авторизации</v-tab>
+        </v-tabs>
 
-                    <v-divider inset></v-divider>
-
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color="">mdi-account</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.name.full_name}}</v-list-item-title>
-                            <v-list-item-subtitle>Имя пользователя</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.unit}}</v-list-item-title>
-                            <v-list-item-subtitle>Отдел</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.position}}</v-list-item-title>
-                            <v-list-item-subtitle>Должность</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.office_address}}</v-list-item-title>
-                            <v-list-item-subtitle>Офис и кабинет</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.schedule}}</v-list-item-title>
-                            <v-list-item-subtitle>Рабочий график</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.status}} / {{item.in_office ? 'В офисе' : 'Не на работе'}} / {{item.online_office ? item.online_office : ''}}</v-list-item-title>
-                            <v-list-item-subtitle>Статус</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.chief_main}}</v-list-item-title>
-                            <v-list-item-title>{{item.chief}}</v-list-item-title>
-                            <v-list-item-subtitle>Руководители</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-
-                    <v-divider inset></v-divider>
-
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color="">mdi-email</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.email}}</v-list-item-title>
-                            <v-list-item-subtitle>Email</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item v-if="item.phone_mobile">
-                        <v-list-item-icon>
-                            <v-icon color="">mdi-phone</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.phone_mobile}}</v-list-item-title>
-                            <v-list-item-subtitle>Мобильный телефон</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item v-if="item.phone_work">
-                        <v-list-item-icon>
-                            <v-icon color="">mdi-phone</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.phone_work}}</v-list-item-title>
-                            <v-list-item-subtitle>Рабочий телефон</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-
-                    <v-divider inset></v-divider>
-
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.tab_no}}</v-list-item-title>
-                            <v-list-item-subtitle>Табельный номер</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon color=""></v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>{{item.id_phperson}}</v-list-item-title>
-                            <v-list-item-subtitle>Номер из 1С</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-card>
-            </v-col>
-            <v-col class="col-5" v-if="visits" no-gutters>
-                <div class="d-flex">
-                    <h2 class="flex justify-start">Последние посещения</h2>
-                </div>
-                <v-card  class="mt-5 pr-5 mx-auto">
-                    <v-list-item v-for="(visit, day) in visits">
-                        <v-list-item-content v-if="visit.empty">
-                            <v-list-item-title class="text--red">{{day}} {{visit.day_of_week}}</v-list-item-title>
-                            <v-list-item-subtitle>Нет данных</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-content v-if="visit.holiday">
-                            <v-list-item-title class="text--red">{{day}} {{visit.day_of_week}}</v-list-item-title>
-                            <v-list-item-subtitle>{{visit.status}}</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-content v-if="!visit.empty && !visit.holiday" class="visit-time">
-                            <v-list-item-title>{{day}} {{visit.day_of_week}}</v-list-item-title>
-                            <v-row>
-                                <v-col>
-                                    <v-list-item-subtitle>Вход: {{visit.enter_time || '-'}}</v-list-item-subtitle>
-                                </v-col>
-                                <v-col>
-                                    <v-list-item-subtitle>Выход: {{visit.exit_time || '-'}}</v-list-item-subtitle>
-                                </v-col>
-                                <v-col>
-                                    <v-list-item-subtitle>Рабочее время: {{visit.work_time || '-'}}</v-list-item-subtitle>
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col>
-                                    <v-list-item-subtitle>Вне офиса: {{visit.idle_time || '-'}}</v-list-item-subtitle>
-                                </v-col>
-                                <v-col>
-                                    <v-list-item-subtitle>На территории: {{visit.territory_time || '-'}}</v-list-item-subtitle>
-                                </v-col>
-                                <v-col>
-                                    <v-list-item-subtitle></v-list-item-subtitle>
-                                </v-col>
-                            </v-row>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-card>
-            </v-col>
-        </v-row>
+        <v-tabs-items class="mt-5" v-model="tab">
+            <v-tab-item :transition="false" :reverse-transition="false">
+                <user-information v-if="item" :item="item"></user-information>
+            </v-tab-item>
+            <v-tab-item :transition="false" :reverse-transition="false">
+                <user-visits v-if="visits" :visits="visits"></user-visits>
+            </v-tab-item>
+            <v-tab-item :transition="false" :reverse-transition="false">
+                <user-tasks-approval
+                    :tasks="approval"
+                >
+                </user-tasks-approval>
+            </v-tab-item>
+            <v-tab-item :transition="false" :reverse-transition="false">
+                <user-sessions
+                    :sessions="sessions"
+                    :id_phperson="id_phperson"
+                ></user-sessions>
+            </v-tab-item>
+        </v-tabs-items>
     </v-container>
 </template>
 
 <script>
+  import UserInformation from "./components/UserInformation";
+  import UserVisits from "./components/UserVisits";
+  import UserSessions from "./components/UserSessions";
+  import UserTasksApproval from "./components/UserTasksApproval";
+
   export default {
     props: ['id_phperson'],
-    components: {},
+    components: {UserInformation, UserVisits, UserSessions, UserTasksApproval},
     data: () => {
       return {
         item: null,
         visits: null,
+        sessions: null,
+        approval: null,
+        tab: 0,
       }
+    },
+    created() {
+      this.$root.$on('update', () => {
+        this.updateProfile()
+      });
     },
     mounted() {
       this.loadUser(this.id_phperson)
     },
     methods: {
+      async updateProfile() {
+        await this.loadUser(this.id_phperson)
+        this.$root.$emit('showSnack', 'Данные обновлены', 'success')
+      },
+      async loadVisits(id_phperson) {
+        let response = await this.$apiUsers.getUserVisits(id_phperson)
+
+        if (response.result) {
+          this.visits = response.data
+          this.visits.reverse
+        }
+      },
+
+      async loadSessions(id_phperson) {
+        let response = await this.$apiUsers.getUserSessions(id_phperson)
+
+        if (response.result) {
+          this.sessions = response.data
+        }
+      },
+
+      async loadApprovalTasks(id_phperson) {
+        let response = await this.$apiUsers.getUserApprovalTasks(id_phperson)
+
+        if (response.result) {
+          this.approval = response.data
+        }
+      },
+
       async loadUser(id_phperson) {
         let response = await this.$apiUsers.getUser(id_phperson)
 
         if (response.result) {
           this.item = response.data;
+          this.loadVisits(id_phperson)
+          this.loadSessions(id_phperson)
+          this.loadApprovalTasks(id_phperson)
 
-          response = await this.$apiUsers.getUserVisits(id_phperson)
-
-          if (response.result) {
-            this.visits = response.data
-            this.visits.reverse
-          }
         } else {
           this.$root.$emit('showSnack', 'Ошибка загрузки данных', 'error')
           this.item = null

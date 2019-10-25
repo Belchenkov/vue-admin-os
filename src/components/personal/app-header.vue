@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app elevation="0" :height="59" class="app-header">
+    <v-app-bar v-if="userProfile" app elevation="0" :height="59" class="app-header">
         <div class="flex-grow-1"></div>
 
         <v-list-item two-line class="app-header__profile">
