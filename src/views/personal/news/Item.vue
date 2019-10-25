@@ -26,7 +26,7 @@
                             :error-messages="errors.title"
                             required
                         ></v-text-field>
-                        <ckeditor :error-messages="errors.cocntent" :editor="editor" v-model="item.content" :config="editorConfig"></ckeditor>
+                        <ckeditor :error-messages="errors.content" :editor="editor" v-model="item.content" :config="editorConfig"></ckeditor>
                         <v-switch v-model="item.publish" inset :label="'Опубликовать'"></v-switch>
                     </v-container>
                 </v-card>
@@ -54,7 +54,7 @@
   import FileUploader from "@/components/FileUploader";
 
   export default {
-    components: {ClassicEditor, FileUploader},
+    components: { ClassicEditor, FileUploader },
     props: ['id'],
     data: () => {
       return {
