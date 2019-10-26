@@ -102,6 +102,7 @@
       },
       async loadVisits(id_phperson) {
         let response = await this.$apiUsers.getUserVisits(id_phperson)
+        this.visits = null
 
         if (response.result) {
           this.visits = response.data
@@ -111,6 +112,7 @@
 
       async loadSessions(id_phperson) {
         let response = await this.$apiUsers.getUserSessions(id_phperson)
+        this.sessions = null
 
         if (response.result) {
           this.sessions = response.data
@@ -119,7 +121,7 @@
 
       async loadApprovalTasks(id_phperson) {
         let response = await this.$apiUsers.getUserApprovalTasks(id_phperson)
-
+        this.approval = null
         if (response.result) {
           this.approval = response.data
         }
