@@ -1,5 +1,14 @@
 <template>
     <v-container class="lighten-5">
+        <div v-if="!item">
+            <v-progress-circular
+                :size="50"
+                color="primary"
+                indeterminate
+                class="mr-2"
+            ></v-progress-circular>
+            <span>Загрузка данных пользователя...</span>
+        </div>
         <div v-if="item != null" class="d-flex">
             <div class="justify-start col-8">
                 <v-list-item>
@@ -22,6 +31,7 @@
         </div>
 
         <v-tabs
+            v-if="item != null"
             v-model="tab"
             background-color="transparent">
             <v-tab>Информация о пользователе</v-tab>
@@ -30,7 +40,7 @@
             <v-tab>Сессии авторизации</v-tab>
         </v-tabs>
 
-        <v-tabs-items class="mt-5" v-model="tab">
+        <v-tabs-items v-if="item != null" class="mt-5" v-model="tab">
             <v-tab-item :transition="false" :reverse-transition="false">
                 <user-information v-if="item" :item="item"></user-information>
             </v-tab-item>
@@ -69,6 +79,12 @@
         sessions: null,
         approval: null,
         tab: 0,
+      }
+    },
+    watch: {
+      $route(to, from) {
+        this.item = null
+        this.loadUser(this.id_phperson)
       }
     },
     created() {

@@ -64,6 +64,8 @@
     },
     methods: {
       async loadList() {
+        document.getElementById('app').scrollIntoView()
+
         this.loading = true
         let response = await this.$apiNews.getNewsList(this.pagination.current_page)
 

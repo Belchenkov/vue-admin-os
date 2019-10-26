@@ -57,6 +57,8 @@
     },
     methods: {
       async loadList() {
+        document.getElementById('app').scrollIntoView()
+
         this.loading = true
         let response = await this.$apiMailing.getMailingList(this.pagination.current_page)
 

@@ -60,6 +60,7 @@
 
             <v-list-item link class="side-bar__item" v-on:click="signOut">
                 <v-list-item-icon>
+                    <v-icon>mdi-exit-to-app</v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>
