@@ -31,8 +31,9 @@ export default {
             Cookies.set('refresh_token_expire_at', response.data.refresh_token_expire_at)
           }
 
-        } else
-          request.headers.Authorization = 'Bearer ' + Cookies.get('access_token')
+        }
+
+        request.headers.Authorization = 'Bearer ' + Cookies.get('access_token')
       }
 
       return request
