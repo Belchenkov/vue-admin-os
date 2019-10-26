@@ -15,7 +15,6 @@
 
         <div class="justify-start mt-5">
             <v-btn class="bth-shadow mr-2" @click="deleteSessions" depressed color="error">Удалить все сессии</v-btn>
-            <v-btn class="bth-shadow mr-2" @click="deleteOtherSessions" outlined depressed color="error">Удалить все кроме текущей</v-btn>
         </div>
     </div>
 </template>
@@ -62,18 +61,6 @@
     mounted() {
     },
     methods: {
-      async deleteOtherSessions() {
-        this.$root.$emit('showYesNoDefault', async () => {
-          let response = await this.$apiUsers.clearUserOtherSessions(this.id_phperson)
-
-          if (response.result) {
-            this.$root.$emit('update')
-            this.$root.$emit('showSnack', 'Сессии кроме текущей очищены', 'success')
-          } else {
-            this.$root.$emit('showSnack', 'Ошибка очистки сессии', 'error')
-          }
-        })
-      },
 
       async deleteSessions() {
         this.$root.$emit('showYesNoDefault', async () => {
