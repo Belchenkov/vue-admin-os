@@ -20,10 +20,6 @@ const router = new Router({
         return import('@/views/auth/Index')
       },
       redirect: {name: 'login'},
-      meta: {
-        middleware: guest,
-        title: 'Авторизация'
-      },
       children: [
         {
           name: 'login',
@@ -31,6 +27,10 @@ const router = new Router({
           component: function () {
             return import('@/views/auth/Login')
           },
+          meta: {
+            middleware: guest,
+            title: 'Авторизация'
+          }
         },
       ]
     },
@@ -43,6 +43,7 @@ const router = new Router({
       meta: {
         middleware: auth
       },
+      redirect: {name: 'dashboard'},
       children: [
         {
           name: 'dashboard',
