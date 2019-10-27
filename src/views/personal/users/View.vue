@@ -57,6 +57,7 @@
                 <user-sessions
                     :sessions="sessions"
                     :id_phperson="id_phperson"
+                    @updateProfile="updateProfile"
                 ></user-sessions>
             </v-tab-item>
         </v-tabs-items>
@@ -84,15 +85,13 @@
     watch: {
       $route(to, from) {
         this.item = null
+        this.$forceUpdate()
         this.loadUser(this.id_phperson)
       }
     },
     created() {
-      this.$root.$on('update', () => {
-        this.updateProfile()
-      });
     },
-    mounted() {
+    mounted() {;
       this.loadUser(this.id_phperson)
     },
     methods: {

@@ -67,7 +67,7 @@
           let response = await this.$apiUsers.clearUserSessions(this.id_phperson)
 
           if (response.result) {
-            this.$root.$emit('update')
+            this.$emit('updateProfile')
             this.$root.$emit('showSnack', 'Сессии очищены', 'success')
           } else {
             this.$root.$emit('showSnack', 'Ошибка очистки сессии', 'error')
@@ -80,7 +80,7 @@
           let response = await this.$apiUsers.deleteUserSession(this.id_phperson, item.id)
 
           if (response.result) {
-            this.$root.$emit('update')
+            this.$emit('updateProfile')
             this.$root.$emit('showSnack', 'Сессия удалена', 'success')
           } else {
             this.$root.$emit('showSnack', 'Ошибка удаления сессии', 'error')
