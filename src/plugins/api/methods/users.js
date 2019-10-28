@@ -42,11 +42,5 @@ export default function apiUsers(store, router, api) {
         all: 1
       })
     },
-
-    async clearUserOtherSessions(id_phperson) {
-      return await api.request.postRequest('sessions/' + id_phperson, {
-        others: 1
-      })
-    },
   }
 }

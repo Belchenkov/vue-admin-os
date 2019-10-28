@@ -17,7 +17,7 @@
                 </tr>
                 <tr v-else>
                     <td>{{item.day}} / {{item.day_of_week}}</td>
-                    <td class="text-center">{{item.enter_time}}</td>
+                    <td class="text-left">{{item.enter_time}}</td>
                     <td class="text-center">{{item.exit_time}}</td>
                     <td class="text-center">{{item.work_time}}</td>
                     <td class="text-center">{{item.idle_time}}</td>
@@ -39,10 +39,11 @@
             align: 'left',
             sortable: false,
             value: 'day',
+            width: 140
           },
           {
             text: 'Вход',
-            align: 'center',
+            align: 'left',
             sortable: false,
             value: 'enter_time',
           },

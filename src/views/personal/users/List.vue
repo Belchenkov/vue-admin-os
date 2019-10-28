@@ -93,6 +93,8 @@
     },
     methods: {
       async loadList() {
+        document.getElementById('app').scrollIntoView()
+
         this.loading = true
         let response = await this.$apiUsers.getUserCatalog(this.pagination.current_page, false, this.search)
 

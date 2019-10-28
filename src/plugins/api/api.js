@@ -6,6 +6,7 @@ import apiAuth from './methods/auth'
 import apiProfile from './methods/profile'
 import apiUsers from "./methods/users";
 import apiNews from "./methods/news";
+import apiMailing from "./methods/mailing";
 
 export default {
 
@@ -30,8 +31,9 @@ export default {
             Cookies.set('refresh_token_expire_at', response.data.refresh_token_expire_at)
           }
 
-        } else
-          request.headers.Authorization = 'Bearer ' + Cookies.get('access_token')
+        }
+
+        request.headers.Authorization = 'Bearer ' + Cookies.get('access_token')
       }
 
       return request
@@ -72,5 +74,6 @@ export default {
     Vue.prototype.$apiProfile = apiProfile(store, router, this)
     Vue.prototype.$apiUsers = apiUsers(store, router, this)
     Vue.prototype.$apiNews = apiNews(store, router, this)
+    Vue.prototype.$apiMailing = apiMailing(store, router, this)
   }
 }

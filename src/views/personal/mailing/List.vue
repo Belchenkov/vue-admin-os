@@ -1,20 +1,16 @@
 <template>
     <v-container>
         <div class="d-flex">
-            <h1 class="flex justify-start">Новости</h1>
+            <h1 class="flex justify-start">Рассылки PUSH уведомлений</h1>
             <div class="justify-end">
-                <v-btn class="bth-shadow" :to="{name: 'news.create'}" depressed color="primary">Добавить новость</v-btn>
+                <v-btn class="bth-shadow" :to="{name: 'mailing.create'}" depressed color="primary">Создать рассылку</v-btn>
             </div>
         </div>
 
         <v-card>
-            <v-data-table :loading="loading" :single-select="select" :headers="headers"
+            <v-data-table :loading="loading" :headers="headers"
                           hide-default-footer :items="items" :items-per-page="25"
                           item-key="id" checkbox-icon class="elevation-0">
-                <template v-slot:item.action="{item}">
-                    <v-icon small class="mr-2" @click="viewNews(item)">edit</v-icon>
-                    <v-icon small @click="deleteNews(item)">delete</v-icon>
-                </template>
             </v-data-table>
             <div class="pt-5 pb-5">
                 <v-pagination
@@ -34,20 +30,18 @@
     components: {},
     data: () => {
       return {
-        search: '',
         loading: true,
         items: [],
         pagination: {
           current_page: 1,
           last_page: 0,
         },
-        select: null,
         headers: [
           {
-            text: 'Заголовок',
+            text: 'Текст рассылки',
             align: 'left',
             sortable: false,
-            value: 'title',
+            value: 'content',
           },
           {
             text: 'Дата создания',
@@ -55,7 +49,6 @@
             sortable: false,
             value: 'created_at',
           },
-          {text: '', align: 'right', width: 90, align: 'right', value: 'action', sortable: false},
         ]
       }
     },
@@ -67,7 +60,7 @@
         document.getElementById('app').scrollIntoView()
 
         this.loading = true
-        let response = await this.$apiNews.getNewsList(this.pagination.current_page)
+        let response = await this.$apiMailing.getMailingList(this.pagination.current_page)
 
         if (response.result) {
           this.items = response.data.data
@@ -79,23 +72,6 @@
           this.$root.$emit('showSnack', 'Ошибка загрузки данных', 'error')
         }
         this.loading = false
-      },
-
-      viewNews(item) {
-        this.$router.push({name: 'news.edit', params: {id: item.id}});
-      },
-
-      async deleteNews(news) {
-        this.$root.$emit('showYesNoDefault', async () => {
-          let response = await this.$apiNews.deleteNews(news.id)
-
-          if (response.result) {
-            this.$root.$emit('showSnack', 'Новость удалена', 'success')
-            this.loadList()
-          } else {
-            this.$root.$emit('showSnack', 'Ошибка удаления новости', 'error')
-          }
-        })
       },
     }
   }

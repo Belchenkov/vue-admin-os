@@ -66,14 +66,22 @@
                 <v-list-item-subtitle>Статус</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
-        <v-list-item>
+        <v-list-item v-if="item.chief_main_id" link :to="{name: 'users.view', params: {id_phperson: item.chief_main_id}}">
             <v-list-item-icon>
                 <v-icon color=""></v-icon>
             </v-list-item-icon>
             <v-list-item-content>
                 <v-list-item-title>{{item.chief_main}}</v-list-item-title>
+                <v-list-item-subtitle>Основоной руководитель</v-list-item-subtitle>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-if="item.chief_id" link :to="{name: 'users.view', params: {id_phperson: item.chief_id}}">
+            <v-list-item-icon>
+                <v-icon color=""></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
                 <v-list-item-title>{{item.chief}}</v-list-item-title>
-                <v-list-item-subtitle>Руководители</v-list-item-subtitle>
+                <v-list-item-subtitle>Функциональный руководитель</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
 

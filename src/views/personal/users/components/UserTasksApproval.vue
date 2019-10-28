@@ -10,7 +10,7 @@
                 <template v-slot:item.name="{ item }">
                     <v-list-item class="user-list-item">
                         <v-list-item-avatar size="24" :color="item.initiator.avatar.background">
-                            <v-img v-if="item.initiator.avatar.image" :src="item.avatar.image"></v-img>
+                            <v-img v-if="item.initiator.avatar.image" :src="item.initiator.avatar.image"></v-img>
                             <span v-if="!item.initiator.avatar.image" :style="'font-size: 10px; color:' + item.initiator.avatar.color">{{item.initiator.avatar.name}}</span>
                         </v-list-item-avatar>
                         <v-list-item-content>

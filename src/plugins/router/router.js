@@ -9,7 +9,9 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-
+  scrollBehavior() {
+    document.getElementById('app').scrollIntoView()
+  },
   routes: [
     {
       path: '/auth',
@@ -18,9 +20,6 @@ const router = new Router({
         return import('@/views/auth/Index')
       },
       redirect: {name: 'login'},
-      meta: {
-        middleware: guest
-      },
       children: [
         {
           name: 'login',
@@ -28,6 +27,10 @@ const router = new Router({
           component: function () {
             return import('@/views/auth/Login')
           },
+          meta: {
+            middleware: guest,
+            title: 'Авторизация'
+          }
         },
       ]
     },
@@ -40,6 +43,7 @@ const router = new Router({
       meta: {
         middleware: auth
       },
+      redirect: {name: 'dashboard'},
       children: [
         {
           name: 'dashboard',
@@ -47,6 +51,9 @@ const router = new Router({
           component: function () {
             return import('@/views/personal/Dashboard')
           },
+          meta: {
+            title: 'Панель статистики'
+          }
         },
         {
           path: 'admins',
@@ -60,6 +67,9 @@ const router = new Router({
               component: function () {
                 return import('@/views/personal/administrators/List')
               },
+              meta: {
+                title: 'Список администраторов'
+              }
             }
           ]
         },
@@ -75,12 +85,18 @@ const router = new Router({
               component: function () {
                 return import('@/views/personal/users/List')
               },
+              meta: {
+                title: 'Список пользователей'
+              }
             },
             {
               name: 'users.view',
               path: ':id_phperson',
               component: function () {
                 return import('@/views/personal/users/View')
+              },
+              meta: {
+                title: 'Профиль пользователя'
               },
               props: true
             }
@@ -98,6 +114,9 @@ const router = new Router({
               component: function () {
                 return import('@/views/personal/news/List')
               },
+              meta: {
+                title: 'Список новостей'
+              }
             },
             {
               name: 'news.create',
@@ -105,6 +124,9 @@ const router = new Router({
               component: function () {
                 return import('@/views/personal/news/Item')
               },
+              meta: {
+                title: 'Новая новость'
+              }
             },
             {
               name: 'news.edit',
@@ -112,7 +134,38 @@ const router = new Router({
               component: function () {
                 return import('@/views/personal/news/Item')
               },
+              meta: {
+                title: 'Редактирование новости'
+              },
               props: true
+            },
+          ]
+        },
+        {
+          path: 'mailing',
+          component: function () {
+            return import('@/views/personal/Router')
+          },
+          children: [
+            {
+              name: 'mailing',
+              path: '',
+              component: function () {
+                return import('@/views/personal/mailing/List')
+              },
+              meta: {
+                title: 'Список рассылок'
+              }
+            },
+            {
+              name: 'mailing.create',
+              path: 'create',
+              component: function () {
+                return import('@/views/personal/mailing/Item')
+              },
+              meta: {
+                title: 'Новая рассылка'
+              }
             },
           ]
         }
@@ -120,6 +173,11 @@ const router = new Router({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+});
 
 // Router middleware
 routerMiddleware(router);
