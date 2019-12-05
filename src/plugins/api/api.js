@@ -7,6 +7,7 @@ import apiProfile from './methods/profile'
 import apiUsers from "./methods/users";
 import apiNews from "./methods/news";
 import apiMailing from "./methods/mailing";
+import apiTableau from "./methods/tableau";
 
 export default {
 
@@ -75,5 +76,6 @@ export default {
     Vue.prototype.$apiUsers = apiUsers(store, router, this)
     Vue.prototype.$apiNews = apiNews(store, router, this)
     Vue.prototype.$apiMailing = apiMailing(store, router, this)
+    Vue.prototype.$apiTableau = apiTableau(store, router, this)
   }
 }

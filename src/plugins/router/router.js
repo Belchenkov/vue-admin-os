@@ -142,6 +142,45 @@ const router = new Router({
           ]
         },
         {
+          path: 'tableau',
+          component: function () {
+            return import('@/views/personal/Router')
+          },
+          children: [
+            {
+              name: 'tableau',
+              path: '',
+              component: function () {
+                return import('@/views/personal/tableau/List')
+              },
+              meta: {
+                title: 'Список отчетов'
+              }
+            },
+            {
+              name: 'tableau.create',
+              path: 'create',
+              component: function () {
+                return import('@/views/personal/tableau/Item')
+              },
+              meta: {
+                title: 'Новый отчет'
+              }
+            },
+            {
+              name: 'tableau.edit',
+              path: 'edit/:id',
+              component: function () {
+                return import('@/views/personal/tableau/Item')
+              },
+              meta: {
+                title: 'Редактирование отчета'
+              },
+              props: true
+            },
+          ]
+        },
+        {
           path: 'mailing',
           component: function () {
             return import('@/views/personal/Router')
