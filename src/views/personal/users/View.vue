@@ -38,6 +38,7 @@
             <v-tab>Статистика посещений</v-tab>
             <v-tab>Кабинет согласований</v-tab>
             <v-tab>Сессии авторизации</v-tab>
+            <v-tab>Настройки</v-tab>
         </v-tabs>
 
         <v-tabs-items v-if="item != null" class="mt-5" v-model="tab">
@@ -60,6 +61,11 @@
                     @updateProfile="updateProfile"
                 ></user-sessions>
             </v-tab-item>
+            <v-tab-item :transition="false" :reverse-transition="false">
+                <user-settings
+                    :id_phperson="id_phperson"
+                ></user-settings>
+            </v-tab-item>
         </v-tabs-items>
     </v-container>
 </template>
@@ -68,11 +74,12 @@
   import UserInformation from "./components/UserInformation";
   import UserVisits from "./components/UserVisits";
   import UserSessions from "./components/UserSessions";
+  import UserSettings from "./components/UserSettings";
   import UserTasksApproval from "./components/UserTasksApproval";
 
   export default {
     props: ['id_phperson'],
-    components: {UserInformation, UserVisits, UserSessions, UserTasksApproval},
+    components: {UserInformation, UserVisits, UserSessions, UserTasksApproval, UserSettings},
     data: () => {
       return {
         item: null,
@@ -133,6 +140,7 @@
           this.item = response.data;
           this.loadVisits(id_phperson)
           this.loadSessions(id_phperson)
+          this.loadApprovalTasks(id_phperson)
           this.loadApprovalTasks(id_phperson)
 
         } else {

@@ -42,5 +42,18 @@ export default function apiUsers(store, router, api) {
         all: 1
       })
     },
+
+    // Отображать в КИП - Checkbox
+    async showKipChange(id_phperson, show_kip) {
+      return await api.request.postRequest('settings/show-kip-change', {
+        id_phperson,
+        show_kip
+      })
+    },
+
+    // Настройки по id_phperson
+    async getSettings(id_phperson) {
+      return await api.request.getRequest('settings/' + id_phperson)
+    }
   }
 }
