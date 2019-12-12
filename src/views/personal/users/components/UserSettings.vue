@@ -15,7 +15,7 @@
                         v-model="settings.showKip"
                         inset
                         @change="showKipChange"
-                        label="Отображать в КИП"
+                        label="Может назначать всех сотрудников в КИП"
                 ></v-switch>
             </v-sheet>
         </v-card>
